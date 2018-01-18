@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: 
+  affiliation: 
+  website: 
+  contact: 
+  check_size: 
+  investments_per_year: 
+  notes: 
+  status: 
+  location: 
+  potential: 
+  interests: 
+  notable_investments: MyText
+
+two:
+  name: 
+  affiliation: 
+  website: 
+  contact: 
+  check_size: 
+  investments_per_year: 
+  notes: 
+  status: 
+  location: 
+  potential: 
+  interests: 
+  notable_investments: MyText
