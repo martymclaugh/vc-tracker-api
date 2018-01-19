@@ -15,7 +15,7 @@ class UpdateVentureCapitalist < GraphQL::Function
   type Types::VentureCapitalistType
 
   def call(obj, args, ctx)
-    venture_capitalist = VentureCapitalist.find(args[:id])
+    venture_capitalist = VentureCapitalist.find_by_slug_or_id(args[:id])
 
     venture_capitalist if venture_capitalist.update(args.to_h)
   end
