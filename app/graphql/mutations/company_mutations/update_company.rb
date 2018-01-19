@@ -9,7 +9,7 @@ class UpdateCompany < GraphQL::Function
   type Types::CompanyType
 
   def call(obj, args, ctx)
-    company = Company.find(args[:id])
+    company = Company.find_by_slug_or_id(args[:id])
 
     company if company.update(args.to_h)
   end

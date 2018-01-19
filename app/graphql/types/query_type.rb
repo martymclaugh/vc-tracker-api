@@ -12,7 +12,7 @@ Types::QueryType = GraphQL::ObjectType.define do
     argument :id, !types.ID
 
     resolve -> (obj, args, ctx) {
-      Company.find_by(slug: args[:id]) || Company.find(args[:id])
+      Company.find_by_slug_or_id(args[:id])
     }
   end
 
@@ -21,7 +21,7 @@ Types::QueryType = GraphQL::ObjectType.define do
     argument :id, !types.ID
 
     resolve -> (obj, args, ctx) {
-      VentureCapitalist.find_by(slug: args[:id]) || VentureCapitalist.find(args[:id])
+      VentureCapitalist.find_by_slug_or_id(args[:id])
     }
   end
 end
