@@ -13,6 +13,7 @@
 ActiveRecord::Schema.define(version: 20180118044150) do
 
   create_table "companies", force: :cascade do |t|
+    t.string "slug"
     t.string "name"
     t.integer "budget"
     t.integer "raised", default: 0
@@ -47,6 +48,8 @@ ActiveRecord::Schema.define(version: 20180118044150) do
   end
 
   create_table "venture_capitalists", force: :cascade do |t|
+    t.string "slug"
+    t.integer "position"
     t.string "name"
     t.string "affiliation"
     t.string "website"
