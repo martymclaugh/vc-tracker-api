@@ -1,6 +1,8 @@
 class CreateVentureCapitalists < ActiveRecord::Migration[5.1]
   def change
     create_table :venture_capitalists do |t|
+      t.string :slug
+      t.integer :position
       t.string :name
       t.string :affiliation
       t.string :website
