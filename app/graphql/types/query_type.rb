@@ -1,7 +1,7 @@
 Types::QueryType = GraphQL::ObjectType.define do
   name 'Query'
 
-  field :allCompanies, !types[Types::CompanyType] do
+  field :getCompanies, !types[Types::CompanyType] do
     resolve -> (obj, args, ctx) {
       Company.all
     }
@@ -9,7 +9,7 @@ Types::QueryType = GraphQL::ObjectType.define do
 
   field :getCompany do
     !type Types::CompanyType
-    argument :id, !types.ID
+    argument :id, types.ID
 
     resolve -> (obj, args, ctx) {
       Company.find_by_slug_or_id(args[:id])
@@ -18,7 +18,7 @@ Types::QueryType = GraphQL::ObjectType.define do
 
   field :getVentureCapitalist do
     !type Types::VentureCapitalistType
-    argument :id, !types.ID
+    argument :id, types.ID
 
     resolve -> (obj, args, ctx) {
       VentureCapitalist.find_by_slug_or_id(args[:id])
