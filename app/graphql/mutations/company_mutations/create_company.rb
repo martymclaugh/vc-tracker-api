@@ -8,7 +8,7 @@ class CreateCompany < GraphQL::Function
   type Types::CompanyType
 
   def call(obj, args, ctx)
-    slug = args[:name].gsub!(/[^0-9A-Za-z]/, ' ').downcase.split(' ').join('-');
+    slug = args[:name].gsub(/[^0-9A-Za-z]/, ' ').downcase.gsub(/\s/,'-')
 
     Company.create!(args.to_h.merge(slug: slug))
   end
