@@ -1,5 +1,5 @@
 class UpdateCompany < GraphQL::Function
-  argument :id, !types.ID
+  argument :id, types.ID
   argument :name, types.String
   argument :description, types.String
   argument :budget, types.Int
@@ -10,7 +10,8 @@ class UpdateCompany < GraphQL::Function
 
   def call(obj, args, ctx)
     company = Company.find_by_slug_or_id(args[:id])
+    slug = args[:name].gsub(/[^0-9A-Za-z]/, ' ').downcase.gsub(/\s/,'-')
 
-    company if company.update(args.to_h)
+    company if company.update(args.to_h.merge(slug: slug, id: company.id))
   end
 end
