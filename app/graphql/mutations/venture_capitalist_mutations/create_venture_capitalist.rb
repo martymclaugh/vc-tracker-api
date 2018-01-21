@@ -1,6 +1,8 @@
 class CreateVentureCapitalist < GraphQL::Function
+  argument :companyId, !types.ID
+  argument :slug, types.String
   argument :name, !types.String
-  argument :position, !types.Int
+  argument :position, types.Int
   argument :affiliation, !types.String
   argument :website, !types.String
   argument :contact, !types.String
@@ -15,8 +17,12 @@ class CreateVentureCapitalist < GraphQL::Function
 
 
   def call(obj, args, ctx)
-    slug = args[:name].gsub!(/[^0-9A-Za-z]/, ' ').downcase.split(' ').join('-');
+    slug = args[:name].gsub(/[^0-9A-Za-z]/, ' ').downcase.gsub(/\s/,'-')
+    company = Company.find_by_slug_or_id(args[:companyId])
+    args.to_h.delete('companyId')
 
-    VentureCapitalist.create!(args.to_h.merge(slug: slug))
+    vc = VentureCapitalist.create!(args.to_h.merge(slug: slug))
+    company.venture_capitalists << vc
+    return vc
   end
 end
